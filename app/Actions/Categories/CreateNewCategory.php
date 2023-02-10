@@ -40,9 +40,9 @@ class CreateNewCategory
         ];
     }
 
-    public function jsonResponse(Category $article): CategoryResource
+    public function jsonResponse(Category $category): CategoryResource
     {
-        return CategoryResource::make($article);
+        return CategoryResource::make($category);
     }
 
     public function asController(ActionRequest $request): Category
