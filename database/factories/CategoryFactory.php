@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $name = fake()->words(fake()->numberBetween(1, 3));
+        $name = fake()->sentence(fake()->numberBetween(1, 3));
 
         return [
             'name' => $name,
