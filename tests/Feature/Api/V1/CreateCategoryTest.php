@@ -13,7 +13,7 @@ test('guest can NOT create a category', function () {
     ];
 
     /** @var \Illuminate\Testing\TestResponse $response */
-    $this->post(route('api.v1.categories.store'), $data);
+    $this->postJson(route('api.v1.categories.store'), $data);
 
     $this->assertGuest();
 });
@@ -24,7 +24,7 @@ test('user can create a category', function () {
     ];
 
     /** @var \Illuminate\Testing\TestResponse $response */
-    $response = $this->actingAs($this->user)->post(route('api.v1.categories.store'), $data);
+    $response = $this->actingAs($this->user)->postJson(route('api.v1.categories.store'), $data);
 
     $response->assertStatus(201);
     $this->assertEquals(1, $this->user->categories()->count());
@@ -39,7 +39,7 @@ test('user can create a subcategory', function () {
     ];
 
     /** @var \Illuminate\Testing\TestResponse $response */
-    $response = $this->actingAs($this->user)->post(route('api.v1.categories.store'), $data);
+    $response = $this->actingAs($this->user)->postJson(route('api.v1.categories.store'), $data);
 
     $response->assertStatus(201);
     $this->assertEquals(2, $this->user->categories()->count());
@@ -58,7 +58,7 @@ test('user can NOT create 5th level subcategory', function () {
     ];
 
     /** @var \Illuminate\Testing\TestResponse $response */
-    $response = $this->actingAs($this->user)->post(route('api.v1.categories.store'), $data);
+    $response = $this->actingAs($this->user)->postJson(route('api.v1.categories.store'), $data);
 
     $response->assertStatus(422)
         ->assertJson([
