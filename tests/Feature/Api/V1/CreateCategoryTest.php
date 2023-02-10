@@ -46,3 +46,22 @@ test('user can create a subcategory', function () {
     $this->assertEquals(1, $category->children()->count());
     $this->assertEquals($data['name'], $category->children()->first()->name);
 });
+
+test('user can NOT create 5th level subcategory', function () {
+    for ($i = 0; $i < 4; $i++) {
+        Category::factory()->create(['user_id' => $this->user->id, 'parent_id' => Category::latest()->first()]);
+    }
+
+    $data = [
+        'name'      => 'Main dishes',
+        'parent_id' => Category::latest()->first()->id,
+    ];
+
+    /** @var \Illuminate\Testing\TestResponse $response */
+    $response = $this->actingAs($this->user)->post(route('api.v1.categories.store'), $data);
+
+    $response->assertStatus(422)
+        ->assertJson([
+            'message' => 'you can NOT create more than 4 levels',
+        ]);
+});
