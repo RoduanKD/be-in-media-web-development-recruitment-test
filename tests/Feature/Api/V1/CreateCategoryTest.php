@@ -6,6 +6,17 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 });
 
+test('guest can NOT create a category', function () {
+    $data = [
+        'name' => 'Main dishes',
+    ];
+
+    /** @var \Illuminate\Testing\TestResponse $response */
+    $this->post(route('api.v1.categories.store'), $data);
+
+    $this->assertGuest();
+});
+
 test('user can create a category', function () {
     $data = [
         'name' => 'Main dishes',
