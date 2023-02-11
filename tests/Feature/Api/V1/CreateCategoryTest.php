@@ -64,4 +64,5 @@ test('user can NOT create 5th level subcategory', function () {
 
     $response->assertStatus(422)
         ->assertJsonValidationErrorFor('level');
+    $this->assertEquals(4, Category::count());
 });

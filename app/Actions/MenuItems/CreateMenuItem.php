@@ -3,7 +3,6 @@
 namespace App\Actions\MenuItems;
 
 use App\Http\Resources\MenuItemResource;
-use App\Models\Category;
 use App\Models\MenuItem;
 use Illuminate\Routing\Router;
 use Lorisleiva\Actions\ActionRequest;
