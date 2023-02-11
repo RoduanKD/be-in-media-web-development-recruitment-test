@@ -31,6 +31,11 @@ class Category extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    public function items(): HasMany
+    {
+        return $this->hasMany(MenuItem::class);
+    }
+
     public function level(): Attribute
     {
         return Attribute::get(function () {
