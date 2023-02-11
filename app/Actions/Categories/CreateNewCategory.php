@@ -35,8 +35,15 @@ class CreateNewCategory
     {
         return [
             'name'      => 'required|string|min:1|max:255',
-            'parent_id' => 'nullable|numeric|exists:categories,id',
+            'parent_id' => 'nullable|numeric|exists:categories,id|unique:menu_items,category_id',
             'level'     => 'nullable|numeric|lte:4',
+        ];
+    }
+
+    public function getValidationMessages(): array
+    {
+        return [
+            'parent_id.unique' => __('Category must NOT contain mixed children'),
         ];
     }
 
@@ -47,6 +54,7 @@ class CreateNewCategory
 
     public function asController(ActionRequest $request): Category
     {
+        /** @noinspection NullPointerExceptionInspection */
         return $this->handle(auth()->user(), $request->validated());
     }
 
