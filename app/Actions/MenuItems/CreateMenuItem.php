@@ -28,7 +28,14 @@ class CreateMenuItem
         return [
             'name'        => 'required|string|min:1|max:255',
             'price'       => 'required|numeric|min:1',
-            'category_id' => 'nullable|numeric|exists:categories,id',
+            'category_id' => 'nullable|numeric|exists:categories,id|unique:categories,parent_id',
+        ];
+    }
+
+    public function getValidationMessages(): array
+    {
+        return [
+            'category_id.unique' => __('Category must NOT contain mixed children'),
         ];
     }
 

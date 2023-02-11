@@ -21,8 +21,11 @@ namespace App\Models{
  * @property int|null $parent_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Category|null $ancestors
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Category> $children
  * @property-read int|null $children_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $items
+ * @property-read int|null $items_count
  * @property-read Category|null $parent
  * @method static \Database\Factories\CategoryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
@@ -37,6 +40,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereUserId($value)
  */
 	class Category extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\MenuItem
+ *
+ * @property-read \App\Models\Category|null $category
+ * @method static \Database\Factories\MenuItemFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem query()
+ */
+	class MenuItem extends \Eloquent {}
 }
 
 namespace App\Models{
