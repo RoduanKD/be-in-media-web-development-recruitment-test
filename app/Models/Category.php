@@ -14,7 +14,7 @@ class Category extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['name', 'slug', 'parent_id'];
+    protected $fillable = ['name', 'slug', 'discount', 'parent_id'];
 
     public function ancestors(): BelongsTo
     {
@@ -59,5 +59,10 @@ class Category extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public function addDiscount($discount): bool
+    {
+        return $this->update(['discount' => $discount]);
     }
 }

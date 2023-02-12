@@ -12,7 +12,7 @@ class CreateGlobalDiscount
 
     public static function routes(Router $router): void
     {
-        $router->post('discount/global', static::class)->name('global-discount.store');
+        $router->post('discount/global', static::class)->name('global-discount.update');
     }
 
     public function getControllerMiddleware(): array
