@@ -92,3 +92,18 @@ test('menu item can inherit discount form an ancestor category when its own disc
 
     expect($item)->discount_price->toBe(15);
 });
+
+test('menu item can inherit discount form user when its own discount and all ancestors\' are 0', function () {
+    $this->user->addDiscount(10);
+    $item = MenuItem::factory(null, ['discount' => 0, 'price' => 150])
+        ->for(
+            Category::factory(null, ['user_id' => $this->user, 'discount' => 0])
+                ->for(
+                    Category::factory(null, ['user_id' => $this->user, 'discount' => 0])
+                        ->for(Category::factory(null, ['user_id' => $this->user, 'discount' => 0]), 'parent'),
+                    'parent'
+                )
+        )->create();
+
+    expect($item)->discount_price->toBe(15);
+});

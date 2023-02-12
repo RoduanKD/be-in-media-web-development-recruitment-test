@@ -57,7 +57,7 @@ class Category extends Model
 
     public function discount(): Attribute
     {
-        return Attribute::get(fn($val) => $val ?: ($this->parent?->discount ?? 0));
+        return Attribute::get(fn($val) => $val ?: ($this->parent?->discount ?? $this->owner->discount));
     }
 
     public function getSlugOptions(): SlugOptions
