@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'discount',
     ];
 
     /**
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
+    }
+
+    public function addDiscount($discount): bool
+    {
+        return $this->update(['discount' => $discount]);
     }
 }
