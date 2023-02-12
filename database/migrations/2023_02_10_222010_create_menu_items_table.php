@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('price')->unsigned();
+            $table->integer('discount')->unsigned()->default(0);
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
