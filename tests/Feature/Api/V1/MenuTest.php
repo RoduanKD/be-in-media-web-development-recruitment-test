@@ -4,10 +4,9 @@ use App\Models\Category;
 use App\Models\MenuItem;
 use App\Models\User;
 
-beforeEach(function () {
+it('returns categories with proper structure', function () {
     $this->user = User::factory()->has(
-        Category::factory(3)
-            ->has(MenuItem::factory(3), 'items')
+        Category::factory(3)->has(MenuItem::factory(3), 'items')
     )->create();
 
     $category = Category::orderByDesc('id')->firstOrFail('id');
@@ -17,9 +16,7 @@ beforeEach(function () {
     ])
         ->has(MenuItem::factory(3), 'items')
         ->create();
-});
 
-it('returns categories with proper structure', function () {
     /** @var \Illuminate\Testing\TestResponse $response */
     $response = $this->get(route('api.v1.categories.index', $this->user));
 
@@ -41,6 +38,8 @@ it('returns categories with proper structure', function () {
 });
 
 it('returns menu items of a category with proper structure', function () {
+    User::factory()->has(Category::factory()->has(MenuItem::factory(3), 'items'))->create();
+
     /** @var \Illuminate\Testing\TestResponse $response */
     $response = $this->get(route('api.v1.menu-items.index', Category::first()));
 
