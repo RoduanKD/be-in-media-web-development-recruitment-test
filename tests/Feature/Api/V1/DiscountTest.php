@@ -61,3 +61,17 @@ test('user can add discount to a menu item', function () {
     $item->refresh();
     expect($item)->discount->toBe($data['discount']);
 });
+
+test('menu item returns correct discount price when discount is stored inside it', function () {
+    $item = MenuItem::factory(null, ['discount' => 10, 'price' => 150])
+        ->for(Category::factory(null, ['user_id' => $this->user]))->create();
+
+    expect($item)->discount_price->toBe(15);
+});
+
+test('menu item returns price when discount is 0', function () {
+    $item = MenuItem::factory(null, ['discount' => 0, 'price' => 150])
+        ->for(Category::factory(null, ['user_id' => $this->user]))->create();
+
+    expect($item)->discount_price->toBe(150);
+});
