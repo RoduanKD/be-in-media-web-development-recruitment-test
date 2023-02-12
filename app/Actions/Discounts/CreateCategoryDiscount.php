@@ -21,7 +21,7 @@ class CreateCategoryDiscount
         return ['auth'];
     }
 
-    public function authorize(ActionRequest $request)
+    public function authorize(ActionRequest $request): bool
     {
         return $request->category->user_id === auth()->id();
     }

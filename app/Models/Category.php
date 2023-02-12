@@ -29,7 +29,7 @@ class Category extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function children(): HasMany
@@ -53,6 +53,11 @@ class Category extends Model
 
             return $level;
         });
+    }
+
+    public function discount(): Attribute
+    {
+        return Attribute::get(fn($val) => $val ?: ($this->parent?->discount ?? 0));
     }
 
     public function getSlugOptions(): SlugOptions

@@ -35,7 +35,7 @@ test('user can add discount to a category', function () {
 });
 
 test('user can NOT add discount to a category he doesnt own', function () {
-    $category = Category::factory()->create(['user_id' => User::factory()->create()->id]);
+    $category = Category::factory()->for(User::factory()->create(), 'owner')->create();
     $data = [
         'discount' => 10,
     ];
@@ -79,6 +79,16 @@ test('menu item returns price when discount is 0', function () {
 test('menu item can inherit discount form its direct parent when its own discount is 0', function () {
     $item = MenuItem::factory(null, ['discount' => 0, 'price' => 150])
         ->for(Category::factory(null, ['user_id' => $this->user, 'discount' => 10]))->create();
+
+    expect($item)->discount_price->toBe(15);
+});
+
+test('menu item can inherit discount form an ancestor category when its own discount is 0', function () {
+    $item = MenuItem::factory(null, ['discount' => 0, 'price' => 150])
+        ->for(
+            Category::factory(null, ['user_id' => $this->user, 'discount' => 0])
+                ->for(Category::factory(null, ['user_id' => $this->user, 'discount' => 10]), 'parent')
+        )->create();
 
     expect($item)->discount_price->toBe(15);
 });
