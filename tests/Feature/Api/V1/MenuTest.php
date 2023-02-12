@@ -21,7 +21,7 @@ beforeEach(function () {
 
 it('returns categories with proper structure', function () {
     /** @var \Illuminate\Testing\TestResponse $response */
-    $response = $this->get(route('api.v1.categories.index'));
+    $response = $this->get(route('api.v1.categories.index', $this->user));
 
     $categoryStructure = [
         'name',

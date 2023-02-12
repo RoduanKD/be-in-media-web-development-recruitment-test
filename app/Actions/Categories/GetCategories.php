@@ -4,6 +4,7 @@ namespace App\Actions\Categories;
 
 use App\Http\Resources\CategoriesResource;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Routing\Router;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -15,12 +16,12 @@ class GetCategories
 
     public static function routes(Router $router): void
     {
-        $router->get('categories', static::class)->name('categories.index');
+        $router->get('{user}/categories', static::class)->name('categories.index');
     }
 
-    public function handle(ActionRequest $request)
+    public function handle(User $user, ActionRequest $request)
     {
-        return CategoriesResource::collection(QueryBuilder::for(Category::class)
+        return CategoriesResource::collection(QueryBuilder::for($user->categories())
             ->scopes('topLevel')
             ->with('children')
             ->orderByDesc('id')
