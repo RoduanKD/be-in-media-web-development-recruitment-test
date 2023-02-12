@@ -13,7 +13,7 @@ class CreateCategoryDiscount
 
     public static function routes(Router $router): void
     {
-        $router->post('discount/category/{category}', static::class)->name('category-discounts.update');
+        $router->post('discount/category/{category}', static::class)->name('category-discount.update');
     }
 
     public function getControllerMiddleware(): array

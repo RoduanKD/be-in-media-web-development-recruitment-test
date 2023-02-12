@@ -26,7 +26,7 @@ test('user can add discount to a category', function () {
     ];
 
     /** @var \Illuminate\Testing\TestResponse $response */
-    $response = $this->actingAs($this->user)->postJson(route('api.v1.category-discounts.update', $category), $data);
+    $response = $this->actingAs($this->user)->postJson(route('api.v1.category-discount.update', $category), $data);
 
     $response->assertStatus(200);
     $category->refresh();
@@ -40,7 +40,7 @@ test('user can NOT add discount to a category he doesnt own', function () {
     ];
 
     /** @var \Illuminate\Testing\TestResponse $response */
-    $response = $this->actingAs($this->user)->postJson(route('api.v1.category-discounts.update', $category), $data);
+    $response = $this->actingAs($this->user)->postJson(route('api.v1.category-discount.update', $category), $data);
 
     $response->assertStatus(403);
     $category->refresh();
