@@ -3,7 +3,6 @@
 namespace App\Actions\Categories;
 
 use App\Http\Resources\CategoriesResource;
-use App\Models\Category;
 use App\Models\User;
 use Illuminate\Routing\Router;
 use Lorisleiva\Actions\ActionRequest;

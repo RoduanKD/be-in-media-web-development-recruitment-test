@@ -39,3 +39,21 @@ it('returns categories with proper structure', function () {
             'meta',
         ]);
 });
+
+it('returns menu items of a category with proper structure', function () {
+    /** @var \Illuminate\Testing\TestResponse $response */
+    $response = $this->get(route('api.v1.menu-items.index', Category::first()));
+
+    $response->assertStatus(200)
+        ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'name',
+                        'slug',
+                        'price',
+                        'discount_price',
+                    ],
+                ],
+            ]
+        );
+});

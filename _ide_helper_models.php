@@ -17,6 +17,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $slug
+ * @property int $discount
  * @property int $user_id
  * @property int|null $parent_id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -26,12 +27,15 @@ namespace App\Models{
  * @property-read int|null $children_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $items
  * @property-read int|null $items_count
+ * @property-read \App\Models\User|null $owner
  * @property-read Category|null $parent
  * @method static \Database\Factories\CategoryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category topLevel()
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereParentId($value)
@@ -46,11 +50,27 @@ namespace App\Models{
 /**
  * App\Models\MenuItem
  *
- * @property-read \App\Models\Category|null $category
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property int $price
+ * @property int $discount
+ * @property int $category_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category $category
  * @method static \Database\Factories\MenuItemFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|MenuItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MenuItem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MenuItem query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereUpdatedAt($value)
  */
 	class MenuItem extends \Eloquent {}
 }
@@ -64,6 +84,7 @@ namespace App\Models{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
+ * @property int $discount
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -78,6 +99,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
