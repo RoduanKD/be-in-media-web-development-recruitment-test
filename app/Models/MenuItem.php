@@ -12,7 +12,7 @@ class MenuItem extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['name', 'slug', 'price', 'category_id'];
+    protected $fillable = ['name', 'slug', 'price', 'discount', 'category_id'];
 
     public function category(): BelongsTo
     {
@@ -24,5 +24,10 @@ class MenuItem extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function addDiscount($discount): bool
+    {
+        return $this->update(['discount' => $discount]);
     }
 }

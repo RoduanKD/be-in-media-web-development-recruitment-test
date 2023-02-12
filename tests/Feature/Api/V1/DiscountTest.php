@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\MenuItem;
 use App\Models\User;
 
 beforeEach(function () {
@@ -45,4 +46,18 @@ test('user can NOT add discount to a category he doesnt own', function () {
     $response->assertStatus(403);
     $category->refresh();
     expect($category)->discount->toBe(0);
+});
+
+test('user can add discount to a menu item', function () {
+    $item = MenuItem::factory()->for(Category::factory()->state(['user_id' => $this->user]))->create();
+    $data = [
+        'discount' => 10,
+    ];
+
+    /** @var \Illuminate\Testing\TestResponse $response */
+    $response = $this->actingAs($this->user)->postJson(route('api.v1.item-discount.update', $item), $data);
+
+    $response->assertStatus(200);
+    $item->refresh();
+    expect($item)->discount->toBe($data['discount']);
 });
