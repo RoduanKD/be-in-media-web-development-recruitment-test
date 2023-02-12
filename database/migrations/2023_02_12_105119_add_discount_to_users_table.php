@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('discount')->default(0)->after('password');
+            $table->integer('discount')->unsigned()->default(0)->after('password');
         });
     }
 

@@ -12,7 +12,7 @@ test('user can add global discount on his menu', function () {
     ];
 
     /** @var \Illuminate\Testing\TestResponse $response */
-    $response = $this->actingAs($this->user)->postJson(route('api.v1.global-discount.store'), $data);
+    $response = $this->actingAs($this->user)->postJson(route('api.v1.global-discount.update'), $data);
 
     $response->assertStatus(200);
     expect($this->user)->discount->toBe($data['discount']);
