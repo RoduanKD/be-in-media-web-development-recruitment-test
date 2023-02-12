@@ -75,3 +75,10 @@ test('menu item returns price when discount is 0', function () {
 
     expect($item)->discount_price->toBe(150);
 });
+
+test('menu item can inherit discount form its direct parent when its own discount is 0', function () {
+    $item = MenuItem::factory(null, ['discount' => 0, 'price' => 150])
+        ->for(Category::factory(null, ['user_id' => $this->user, 'discount' => 10]))->create();
+
+    expect($item)->discount_price->toBe(15);
+});

@@ -27,6 +27,11 @@ class MenuItem extends Model
             ->saveSlugsTo('slug');
     }
 
+    public function discount(): Attribute
+    {
+        return Attribute::get(fn($val) => $val ?: $this->category->discount);
+    }
+
     public function discountPrice(): Attribute
     {
         return Attribute::get(fn() => $this->discount ? $this->price * $this->discount / 100 : $this->price);
