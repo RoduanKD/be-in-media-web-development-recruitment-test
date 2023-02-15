@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\MenuItem;
 use App\Models\User;
+use Database\Seeders\DemoSeeder;
 
 it('returns categories with proper structure', function () {
     $this->user = User::factory()->has(
@@ -55,4 +56,12 @@ it('returns menu items of a category with proper structure', function () {
                 ],
             ]
         );
+});
+
+it('returns categories that can have subcategories', function () {
+    $this->seed(DemoSeeder::class); // it was 23 categories that can have subcategories
+
+    /** @var \Illuminate\Testing\TestResponse $response */
+    $response = $this->get(route('api.v1.categories.can-have-child-category.index', User::first()));
+    $response->assertJsonCount(23, 'data');
 });
