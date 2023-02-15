@@ -19,6 +19,7 @@ class CategoriesResource extends JsonResource
             'name'     => $this->name,
             'slug'     => $this->slug,
             'children' => $this->when((bool) $this->children->count(), self::collection($this->children)),
+            'level'    => $this->level,
         ];
     }
 }
