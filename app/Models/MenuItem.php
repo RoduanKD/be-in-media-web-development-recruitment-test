@@ -39,6 +39,11 @@ class MenuItem extends Model
         );
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function addDiscount($discount): bool
     {
         return $this->update(['discount' => $discount]);
