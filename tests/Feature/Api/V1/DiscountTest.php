@@ -66,7 +66,7 @@ test('menu item returns correct discount price when discount is stored inside it
     $item = MenuItem::factory(null, ['discount' => 10, 'price' => 150])
         ->for(Category::factory(null, ['user_id' => $this->user]))->create();
 
-    expect($item)->discount_price->toBe(15);
+    expect($item)->discount_price->toBe(135.0);
 });
 
 test('menu item returns price when discount is 0', function () {
@@ -80,7 +80,7 @@ test('menu item can inherit discount form its direct parent when its own discoun
     $item = MenuItem::factory(null, ['discount' => 0, 'price' => 150])
         ->for(Category::factory(null, ['user_id' => $this->user, 'discount' => 10]))->create();
 
-    expect($item)->discount_price->toBe(15);
+    expect($item)->discount_price->toBe(135.0);
 });
 
 test('menu item can inherit discount form an ancestor category when its own discount is 0', function () {
@@ -90,7 +90,7 @@ test('menu item can inherit discount form an ancestor category when its own disc
                 ->for(Category::factory(null, ['user_id' => $this->user, 'discount' => 10]), 'parent')
         )->create();
 
-    expect($item)->discount_price->toBe(15);
+    expect($item)->discount_price->toBe(135.0);
 });
 
 test('menu item can inherit discount form user when its own discount and all ancestors\' are 0', function () {
@@ -105,5 +105,5 @@ test('menu item can inherit discount form user when its own discount and all anc
                 )
         )->create();
 
-    expect($item)->discount_price->toBe(15);
+    expect($item)->discount_price->toBe(135.0);
 });

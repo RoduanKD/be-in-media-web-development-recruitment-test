@@ -34,7 +34,7 @@ class MenuItem extends Model
 
     public function discountPrice(): Attribute
     {
-        return Attribute::get(fn() => $this->discount ? $this->price * $this->discount / 100 : $this->price);
+        return Attribute::get(fn() => $this->discount ? $this->price * (1 - $this->discount / 100) : $this->price);
     }
 
     public function addDiscount($discount): bool
