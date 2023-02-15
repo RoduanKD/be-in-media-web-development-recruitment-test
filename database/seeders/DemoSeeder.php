@@ -16,7 +16,7 @@ class DemoSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create();
+        $user = User::factory(null, ['email' => 'user@gmail.com'])->create();
         Category::factory(null, ['user_id' => $user->id])->has(MenuItem::factory(3), 'items')->create();
 
         Category::factory(null, ['user_id' => $user->id])
