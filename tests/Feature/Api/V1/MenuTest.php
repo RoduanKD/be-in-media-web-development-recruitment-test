@@ -65,3 +65,11 @@ it('returns categories that can have subcategories', function () {
     $response = $this->get(route('api.v1.categories.can-have-child-category.index', User::first()));
     $response->assertJsonCount(23, 'data');
 });
+
+it('returns categories that can have menu items', function () {
+    $this->seed(DemoSeeder::class); // it was 28 categories that can have menu items
+
+    /** @var \Illuminate\Testing\TestResponse $response */
+    $response = $this->get(route('api.v1.categories.can-have-menu-items.index', User::first()));
+    $response->assertJsonCount(28, 'data');
+});
