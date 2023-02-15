@@ -20,6 +20,7 @@ class MenuItemsResource extends JsonResource
             'slug'           => $this->slug,
             'price'          => $this->price,
             'discount_price' => $this->discount_price,
+            'discount'       => $this->discount,
         ];
     }
 }
