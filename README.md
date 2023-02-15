@@ -38,9 +38,10 @@ scaffold the project and focus on what matters.
 1. Clone this repo
 2. `composer install`
 3. `cp .env.example .env`
-4. update the `DATABASE` values in `.env`
-5. `php artisan migrate --seed --seeder=DemoSeeder`
-6. `php artisan serve`
+4. `php artisan key:generate`
+5. update the `DATABASE` values in `.env`
+6. `php artisan migrate --seed --seeder=DemoSeeder`
+7. `php artisan serve`
 
 ## Testing
 
