@@ -11,14 +11,14 @@
 
 This is the backend of the restaurant menu.
 
-### Features & Technologies
+## Features & Technologies
 
 Please Note that I did **NOT** cover the cases that aren't mentioned in the requirements (such as update/delete items)
 file since the purpose of the project is to showcase the code structure and not to release a project. However, all
 requirements that are mentioned in the file are covered here. To get started quickly I used **Laravel Breeze (API)** to
 scaffold the project and focus on what matters.
 
-### API Structure
+## API Structure
 
 | Method | Url                                                | Description                                           |
 |--------|----------------------------------------------------|-------------------------------------------------------|
@@ -33,7 +33,7 @@ scaffold the project and focus on what matters.
 | GET    | `api/v1/{user}/categories/can-have-child-category` | Get items for category selector (in category create)  |
 | GET    | `api/v1/{user}/categories/can-have-menu-items`     | Get items for category selector (in menu item create) |
 
-### Installation guide
+## Installation guide
 
 1. Clone this repo
 2. `composer install`
@@ -42,7 +42,7 @@ scaffold the project and focus on what matters.
 5. `php artisan migrate --seed --seeder=DemoSeeder`
 6. `php artisan serve`
 
-### Testing
+## Testing
 
 In this project, every single api is tested with the required tests that insures that it's working as it's intended to
 do especially the ones mentioned in the requirements file
