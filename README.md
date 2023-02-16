@@ -43,6 +43,12 @@ scaffold the project and focus on what matters.
 6. `php artisan migrate --seed --seeder=DemoSeeder`
 7. `php artisan serve`
 
+### Default Credentials
+
+| Email          | password |
+|----------------|----------|
+| user@gmail.com | password |
+
 ## Testing
 
 In this project, every single api is tested with the required tests that insures that it's working as it's intended to
